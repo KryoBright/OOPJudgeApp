@@ -6,6 +6,7 @@ public class Trainer extends Person {
 
     public Trainer(String personName) {
         super(personName);
+        EverythingHolder.addTrainer(this);
     }
 
     Team getTeam() {

@@ -5,11 +5,15 @@ import android.text.method.DateTimeKeyListener;
 import java.text.DateFormat;
 import java.util.Date;
 
-public class Match {
+public class Match extends IDable{
     private Judge judge;
     private Team team1,team2;
     private Integer leftScore,rightScore;
     private Date matchDate;
+
+    public Match(){
+        EverythingHolder.addMatch(this);
+    }
 
     public void setJudge(Judge judge) {
         this.judge = judge;
@@ -63,4 +67,19 @@ public class Match {
     {
         return DateFormat.getDateInstance().format(matchDate);
     }
+
+    public Team getWinner(){
+        if (leftScore>rightScore)
+        return team1;
+        else if (leftScore<rightScore)
+             return team2;
+             else return null;
+    }
+
+    public String getStringedScore()
+    {
+        return getLeftScore().toString()+":"+getRightScore().toString();
+    }
+
+
 }

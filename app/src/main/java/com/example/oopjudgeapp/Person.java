@@ -1,6 +1,6 @@
 package com.example.oopjudgeapp;
 
-public abstract class Person {
+public abstract class Person extends IDable {
     private
     int wins,loses;
     private

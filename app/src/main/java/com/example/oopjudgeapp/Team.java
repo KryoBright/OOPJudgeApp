@@ -4,10 +4,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Team {
+public class Team extends IDable{
     private String name;
     private Trainer trainer=null;
     private List<Player> teamPlrs=new ArrayList<>();
+
+    public Team(){
+        EverythingHolder.addTeam(this);
+    }
 
     public List<Player> getTeamPlrs(){
         return Collections.unmodifiableList(teamPlrs);
@@ -42,6 +46,5 @@ public class Team {
     public void remPlayer(Player player){
         teamPlrs.remove(player);
     }
-
 
 }
