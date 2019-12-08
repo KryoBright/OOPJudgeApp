@@ -8,15 +8,15 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.List;
-
 import androidx.recyclerview.widget.RecyclerView;
 
-public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.ViewHolder> {
+import java.util.List;
+
+public class TeamListAdapter extends RecyclerView.Adapter<TeamListAdapter.ViewHolder> {
     private static final String TAG = "CustomAdapter";
     private static Context context=null;
     private static ActivityLauncher launcher=null;
-    private List<Tournament> mDataSet;
+    private List<Team> mDataSet;
 
     // BEGIN_INCLUDE(recyclerViewSampleViewHolder)
 
@@ -39,31 +39,31 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.Vi
     }
 
     public static class ViewHolderContainer extends ViewHolder{
-        private final TextView tourName;
-        private final TextView tourScore;
-        private final TextView tourWinner;
+        private final TextView teamName;
+        private final TextView teamWins;
+        private final TextView teamLoses;
         private final LinearLayout tourAll;
 
         public ViewHolderContainer(View v) {
             super(v);
             // Define click listener for the ViewHolder's View.
-            tourName = (TextView) v.findViewById(R.id.textTourName);
-            tourScore = (TextView) v.findViewById(R.id.textTourScore);
-            tourWinner = (TextView) v.findViewById(R.id.textTourWinner);
+            teamName = (TextView) v.findViewById(R.id.textTeam1);
+            teamWins = (TextView) v.findViewById(R.id.textResults);
+            teamLoses = (TextView) v.findViewById(R.id.textTeam2);
             tourAll=v.findViewById(R.id.tournamentContainerFull);
         }
 
 
-        public TextView getNameView() {
-            return tourName;
+        public TextView getTeamWins() {
+            return teamWins;
         }
 
-        public TextView getTourScore() {
-            return tourScore;
+        public TextView getTeamName() {
+            return teamName;
         }
 
-        public TextView getTourWinner() {
-            return tourWinner;
+        public TextView getTeamLoses() {
+            return teamLoses;
         }
 
         public LinearLayout getTourAll() {
@@ -78,7 +78,7 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.Vi
      *
      * @param dataSet String[] containing the data to populate views to be used by RecyclerView.
      */
-    public TournamentAdapter(List<Tournament> dataSet,Context con,ActivityLauncher launcher1) {
+    public TeamListAdapter(List<Team> dataSet,Context con,ActivityLauncher launcher1) {
         mDataSet = dataSet;
         context=con;
         launcher=launcher1;
@@ -103,7 +103,7 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.Vi
         }
         else{
             View v = LayoutInflater.from(viewGroup.getContext())
-                    .inflate(R.layout.tournament_content, viewGroup, false);
+                    .inflate(R.layout.team_as_content, viewGroup, false);
             return new ViewHolderContainer(v);
         }
     }
@@ -120,31 +120,21 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.Vi
                 public void onClick(View view) {
 
                     int i = 0;
-                    Intent intent=new Intent(context,TournamentRedactActivity.class);
-                    intent.putExtra("id",-1);
-                    launcher.startnext(intent);
+                    //will transfer to new activity with no intent
                 }
             });
         }
         else
         {
-            ((ViewHolderContainer) viewHolder).tourName.setText(mDataSet.get(position-1).getName());
-            if (mDataSet.get(position-1).isFinished())
-            {
-                ((ViewHolderContainer) viewHolder).tourWinner.setText(mDataSet.get(position-1).getAllTeamsAndScoresSorted().get(0).first.getName());
-                ((ViewHolderContainer) viewHolder).tourScore.setText(mDataSet.get(position-1).getAllTeamsAndScoresSorted().get(0).second.toString());
-            }
-            else
-            {
-                ((ViewHolderContainer) viewHolder).tourWinner.setText("Not defined yet");
-                ((ViewHolderContainer) viewHolder).tourScore.setText("Not defined yet");
-            }
+            ((ViewHolderContainer) viewHolder).teamName.setText(mDataSet.get(position-1).getName());
+            ((ViewHolderContainer) viewHolder).teamWins.setText(mDataSet.get(position-1).getWins().toString());
+            ((ViewHolderContainer) viewHolder).teamLoses.setText(mDataSet.get(position-1).getLoses().toString());
+
             ((ViewHolderContainer) viewHolder).tourAll.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
 
                     Intent intent=new Intent(context,TournamentRedactActivity.class);
-                    intent.putExtra("id",mDataSet.get(position-1).getId());
                     launcher.startnext(intent);
                     return false;
                 }

@@ -8,6 +8,7 @@ public class Team extends IDable{
     private String name;
     private Trainer trainer=null;
     private List<Player> teamPlrs=new ArrayList<>();
+    private Integer wins=0,loses=0;
 
     public Team(){
         EverythingHolder.addTeam(this);
@@ -47,4 +48,19 @@ public class Team extends IDable{
         teamPlrs.remove(player);
     }
 
+    public Integer getWins() {
+        return wins;
+    }
+
+    public Integer getLoses() {
+        return loses;
+    }
+
+    public void setLoses(Integer loses) {
+        this.loses = loses;
+    }
+
+    public void setWins(Integer wins) {
+        this.wins = wins;
+    }
 }

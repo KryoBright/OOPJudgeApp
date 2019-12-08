@@ -4,6 +4,7 @@ import android.util.Pair;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 public class Tournament extends IDable {
@@ -106,5 +107,22 @@ public class Tournament extends IDable {
             i++;
         }
         return toReturn;
+    }
+
+    public void updateStatus(Date now)
+    {
+        boolean status=true;
+        Integer i=0;
+        while (i<matches.size()){
+            if (matches.get(i).getMatchDate().after(now))
+            {
+                status=false;
+            }
+            i++;
+        }
+        if (status)
+        {
+            finished=true;
+        }
     }
 }

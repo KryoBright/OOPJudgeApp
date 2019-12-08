@@ -5,4 +5,7 @@ public abstract class IDable {
     public void setId(Integer id) {
         if (this.id==-1) this.id = id;
     }
+    public int getId() {
+        return id;
+    }
 }

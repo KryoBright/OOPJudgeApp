@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/editTextMatchDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -30,7 +30,16 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="442dp" />
+
+            <EditText
+                android:id="@+id/editTextTeam1Score"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:padding="30dp" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -48,17 +57,17 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="441dp" />
+
+            <EditText
+                android:id="@+id/editTextTeam2Score"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:padding="30dp" />
         </LinearLayout>
     </LinearLayout>
-
-    <EditText
-        android:id="@+id/editText4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        android:padding="30dp" />
 
     <Button
         android:id="@+id/button5"
