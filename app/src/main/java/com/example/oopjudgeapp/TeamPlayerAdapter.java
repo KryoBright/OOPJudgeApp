@@ -2,6 +2,8 @@ package com.example.oopjudgeapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ public class TeamPlayerAdapter extends RecyclerView.Adapter<TeamPlayerAdapter.Vi
     private static Context context=null;
     private static ActivityLauncher launcher=null;
     private List<Player> mDataSet;
+    private List<Boolean> incData;
 
     // BEGIN_INCLUDE(recyclerViewSampleViewHolder)
 
@@ -71,10 +74,11 @@ public class TeamPlayerAdapter extends RecyclerView.Adapter<TeamPlayerAdapter.Vi
      *
      * @param dataSet String[] containing the data to populate views to be used by RecyclerView.
      */
-    public TeamPlayerAdapter(List<Player> dataSet,Context con,ActivityLauncher launcher1) {
+    public TeamPlayerAdapter(List<Player> dataSet,List<Boolean> inclusion,Context con,ActivityLauncher launcher1) {
         mDataSet = dataSet;
         context=con;
         launcher=launcher1;
+        incData=inclusion;
     }
 
     @Override
@@ -121,6 +125,9 @@ public class TeamPlayerAdapter extends RecyclerView.Adapter<TeamPlayerAdapter.Vi
         }
         else
         {
+            if (incData.get(position-1).booleanValue())
+                ((ViewHolderContainer) viewHolder).tourAll.setBackgroundColor(Color.RED);
+            else ((ViewHolderContainer) viewHolder).tourAll.setBackgroundColor(Color.WHITE);
             final Player cur=mDataSet.get(position-1);
             ((ViewHolderContainer) viewHolder).playerName.setText(mDataSet.get(position-1).getName());
             Double eff=cur.getEffectivity();
@@ -134,6 +141,18 @@ public class TeamPlayerAdapter extends RecyclerView.Adapter<TeamPlayerAdapter.Vi
                     intent.putExtra("id",cur.getId());
                     launcher.startnext(intent);
                     return false;
+                }
+            });
+
+            final ViewHolderContainer holder=((ViewHolderContainer) viewHolder);
+
+            ((ViewHolderContainer) viewHolder).tourAll.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    incData.set(position-1,!incData.get(position-1));
+                    if (incData.get(position-1))
+                        holder.tourAll.setBackgroundColor(Color.RED);
+                    else holder.tourAll.setBackgroundColor(Color.WHITE);
                 }
             });
         }

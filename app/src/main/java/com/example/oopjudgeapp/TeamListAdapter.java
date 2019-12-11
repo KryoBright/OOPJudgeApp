@@ -47,9 +47,9 @@ public class TeamListAdapter extends RecyclerView.Adapter<TeamListAdapter.ViewHo
         public ViewHolderContainer(View v) {
             super(v);
             // Define click listener for the ViewHolder's View.
-            teamName = v.findViewById(R.id.textTeam1);
-            teamWins = v.findViewById(R.id.textResults);
-            teamLoses = v.findViewById(R.id.textTeam2);
+            teamName = v.findViewById(R.id.textTeamName);
+            teamWins = v.findViewById(R.id.textTeamWins);
+            teamLoses = v.findViewById(R.id.textTeamLoses);
             tourAll=v.findViewById(R.id.teamBG);
         }
 
@@ -137,7 +137,7 @@ public class TeamListAdapter extends RecyclerView.Adapter<TeamListAdapter.ViewHo
                 public boolean onLongClick(View view) {
 
                     Intent intent=new Intent(context,TeamRedactActivity.class);
-                    intent.putExtra("id",mDataSet.get(position-1).getId());
+                    intent.putExtra("id",position-1);
                     launcher.startnext(intent);
                     return false;
                 }

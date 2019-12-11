@@ -51,7 +51,7 @@ public class EverythingHolder {
 
     public static void addTeam(Team team)
     {
-        if (allTeams.contains(team))
+        if ((teamId>team.getId())&&(team.getId()!=-1))
         {
             allTeams.set(team.getId(),team);
         }

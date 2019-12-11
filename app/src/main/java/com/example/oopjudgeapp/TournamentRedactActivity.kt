@@ -33,6 +33,7 @@ class TournamentRedactActivity : AppCompatActivity(),ActivityLauncher {
             newTournament.name=textViewTourName.text.toString()
             newTournament.desc=editTextTourDesc.text.toString()
             newTournament.isFinished=false
+            EverythingHolder.addTournament(newTournament)
             startnext(Intent(this,MainActivity::class.java))
         }
     }

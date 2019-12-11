@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/editTextTeamName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -20,7 +20,7 @@
         android:padding="20dp" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/buttonSaveTeam"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Button" />

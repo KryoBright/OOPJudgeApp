@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -31,7 +32,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerTeam1"
                 android:layout_width="match_parent"
-                android:layout_height="442dp" />
+                android:layout_height="339dp" />
 
             <EditText
                 android:id="@+id/editTextTeam1Score"
@@ -39,7 +40,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="number"
-                android:padding="30dp" />
+                android:padding="30dp"
+                tools:text="0" />
 
         </LinearLayout>
 
@@ -59,7 +61,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerTeam2"
                 android:layout_width="match_parent"
-                android:layout_height="441dp" />
+                android:layout_height="340dp" />
 
             <EditText
                 android:id="@+id/editTextTeam2Score"
@@ -67,12 +69,13 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="number"
-                android:padding="30dp" />
+                android:padding="30dp"
+                tools:text="0" />
         </LinearLayout>
     </LinearLayout>
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/buttonSaveMatch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Save" />
