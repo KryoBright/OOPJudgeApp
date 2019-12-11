@@ -11,7 +11,7 @@ public class Team extends IDable{
     private Integer wins=0,loses=0;
 
     public Team(){
-        EverythingHolder.addTeam(this);
+        //EverythingHolder.addTeam(this);
     }
 
     public List<Player> getTeamPlrs(){

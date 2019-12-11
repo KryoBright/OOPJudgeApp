@@ -22,7 +22,7 @@ public class Tournament extends IDable {
     }
 
     public Tournament(){
-        EverythingHolder.addTournament(this);
+        //EverythingHolder.addTournament(this);
     }
 
     public String getName() {

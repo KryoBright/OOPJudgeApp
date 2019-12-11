@@ -34,7 +34,7 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.Vi
         private final TextView button;
         public ViewHolderButton(View v) {
             super(v);
-            button = (TextView) v.findViewById(R.id.buttonText);
+            button = v.findViewById(R.id.buttonText);
         }
     }
 
@@ -47,9 +47,9 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.Vi
         public ViewHolderContainer(View v) {
             super(v);
             // Define click listener for the ViewHolder's View.
-            tourName = (TextView) v.findViewById(R.id.textTourName);
-            tourScore = (TextView) v.findViewById(R.id.textTourScore);
-            tourWinner = (TextView) v.findViewById(R.id.textTourWinner);
+            tourName = v.findViewById(R.id.textTourName);
+            tourScore = v.findViewById(R.id.textTourScore);
+            tourWinner = v.findViewById(R.id.textTourWinner);
             tourAll=v.findViewById(R.id.tournamentContainerFull);
         }
 

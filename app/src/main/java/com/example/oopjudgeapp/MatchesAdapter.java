@@ -34,7 +34,7 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.ViewHold
         private final TextView button;
         public ViewHolderButton(View v) {
             super(v);
-            button = (TextView) v.findViewById(R.id.buttonText);
+            button = v.findViewById(R.id.buttonText);
         }
     }
 
@@ -47,10 +47,10 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.ViewHold
         public ViewHolderContainer(View v) {
             super(v);
             // Define click listener for the ViewHolder's View.
-            matchTeam1 = (TextView) v.findViewById(R.id.textTeam1);
-            matchScore = (TextView) v.findViewById(R.id.textResults);
-            matchTeam2 = (TextView) v.findViewById(R.id.textTeam2);
-            tourAll=v.findViewById(R.id.tournamentContainerFull);
+            matchTeam1 = v.findViewById(R.id.textTeam1);
+            matchScore = v.findViewById(R.id.textResults);
+            matchTeam2 = v.findViewById(R.id.textTeam2);
+            tourAll=v.findViewById(R.id.matchBG);
         }
 
 
@@ -120,7 +120,9 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.ViewHold
                 public void onClick(View view) {
 
                     int i = 0;
-                    //will transfer to new activity with no intent
+                    Intent intent=new Intent(context,MatchRedact.class);
+                    intent.putExtra("id",-1);
+                    launcher.startnext(intent);
                 }
             });
         }
@@ -134,7 +136,8 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.ViewHold
                 @Override
                 public boolean onLongClick(View view) {
 
-                    Intent intent=new Intent(context,TournamentRedactActivity.class);
+                    Intent intent=new Intent(context,MatchRedact.class);
+                    intent.putExtra("id",mDataSet.get(position-1).getId());
                     launcher.startnext(intent);
                     return false;
                 }

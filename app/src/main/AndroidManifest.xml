@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MatchRedact"></activity>
+        <activity android:name=".AddOrRedactPlayerActivity"></activity>
+        <activity android:name=".TeamRedactActivity" />
+        <activity android:name=".MatchRedact" />
         <activity android:name=".TournamentRedactActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

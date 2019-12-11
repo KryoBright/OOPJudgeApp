@@ -12,11 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class TeamListAdapter extends RecyclerView.Adapter<TeamListAdapter.ViewHolder> {
+public class TeamPlayerAdapter extends RecyclerView.Adapter<TeamPlayerAdapter.ViewHolder> {
     private static final String TAG = "CustomAdapter";
     private static Context context=null;
     private static ActivityLauncher launcher=null;
-    private List<Team> mDataSet;
+    private List<Player> mDataSet;
 
     // BEGIN_INCLUDE(recyclerViewSampleViewHolder)
 
@@ -39,31 +39,24 @@ public class TeamListAdapter extends RecyclerView.Adapter<TeamListAdapter.ViewHo
     }
 
     public static class ViewHolderContainer extends ViewHolder{
-        private final TextView teamName;
-        private final TextView teamWins;
-        private final TextView teamLoses;
+        private final TextView playerName;
+        private final TextView playerEff;
         private final LinearLayout tourAll;
 
         public ViewHolderContainer(View v) {
             super(v);
             // Define click listener for the ViewHolder's View.
-            teamName = v.findViewById(R.id.textTeam1);
-            teamWins = v.findViewById(R.id.textResults);
-            teamLoses = v.findViewById(R.id.textTeam2);
-            tourAll=v.findViewById(R.id.teamBG);
+            playerName = v.findViewById(R.id.textPlayerName);
+            playerEff = v.findViewById(R.id.textEffectivity);
+            tourAll=v.findViewById(R.id.playerBG);
         }
 
-
-        public TextView getTeamWins() {
-            return teamWins;
+        public TextView getPlayerEff() {
+            return playerEff;
         }
 
-        public TextView getTeamName() {
-            return teamName;
-        }
-
-        public TextView getTeamLoses() {
-            return teamLoses;
+        public TextView getPlayerName() {
+            return playerName;
         }
 
         public LinearLayout getTourAll() {
@@ -78,7 +71,7 @@ public class TeamListAdapter extends RecyclerView.Adapter<TeamListAdapter.ViewHo
      *
      * @param dataSet String[] containing the data to populate views to be used by RecyclerView.
      */
-    public TeamListAdapter(List<Team> dataSet,Context con,ActivityLauncher launcher1) {
+    public TeamPlayerAdapter(List<Player> dataSet,Context con,ActivityLauncher launcher1) {
         mDataSet = dataSet;
         context=con;
         launcher=launcher1;
@@ -103,7 +96,7 @@ public class TeamListAdapter extends RecyclerView.Adapter<TeamListAdapter.ViewHo
         }
         else{
             View v = LayoutInflater.from(viewGroup.getContext())
-                    .inflate(R.layout.team_as_content, viewGroup, false);
+                    .inflate(R.layout.player_as_content, viewGroup, false);
             return new ViewHolderContainer(v);
         }
     }
@@ -120,7 +113,7 @@ public class TeamListAdapter extends RecyclerView.Adapter<TeamListAdapter.ViewHo
                 public void onClick(View view) {
 
                     int i = 0;
-                    Intent intent=new Intent(context,TeamRedactActivity.class);
+                    Intent intent=new Intent(context,AddOrRedactPlayerActivity.class);
                     intent.putExtra("id",-1);
                     launcher.startnext(intent);
                 }
@@ -128,16 +121,17 @@ public class TeamListAdapter extends RecyclerView.Adapter<TeamListAdapter.ViewHo
         }
         else
         {
-            ((ViewHolderContainer) viewHolder).teamName.setText(mDataSet.get(position-1).getName());
-            ((ViewHolderContainer) viewHolder).teamWins.setText(mDataSet.get(position-1).getWins().toString());
-            ((ViewHolderContainer) viewHolder).teamLoses.setText(mDataSet.get(position-1).getLoses().toString());
+            final Player cur=mDataSet.get(position-1);
+            ((ViewHolderContainer) viewHolder).playerName.setText(mDataSet.get(position-1).getName());
+            Double eff=cur.getEffectivity();
+            ((ViewHolderContainer) viewHolder).playerEff.setText(eff.toString());
 
             ((ViewHolderContainer) viewHolder).tourAll.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
 
-                    Intent intent=new Intent(context,TeamRedactActivity.class);
-                    intent.putExtra("id",mDataSet.get(position-1).getId());
+                    Intent intent=new Intent(context,AddOrRedactPlayerActivity.class);
+                    intent.putExtra("id",cur.getId());
                     launcher.startnext(intent);
                     return false;
                 }
@@ -145,7 +139,9 @@ public class TeamListAdapter extends RecyclerView.Adapter<TeamListAdapter.ViewHo
         }
     }
     // END_INCLUDE(recyclerViewOnBindViewHolder)
-
+    public void updData(List<Player> dataSet){
+        mDataSet=dataSet;
+    }
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {

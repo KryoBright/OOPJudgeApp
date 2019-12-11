@@ -12,7 +12,7 @@ public class Match extends IDable{
     private Date matchDate;
 
     public Match(){
-        EverythingHolder.addMatch(this);
+        //EverythingHolder.addMatch(this);
     }
 
     public void setJudge(Judge judge) {

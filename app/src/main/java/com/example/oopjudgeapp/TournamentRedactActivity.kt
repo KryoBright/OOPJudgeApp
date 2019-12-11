@@ -9,8 +9,7 @@ import kotlinx.android.synthetic.main.tournament_set_layout.*
 
 class TournamentRedactActivity : AppCompatActivity(),ActivityLauncher {
     override fun startnext(intent: Intent?) {
-        startActivity(intent)
-        finish();
+            startActivity(intent)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,8 +26,8 @@ class TournamentRedactActivity : AppCompatActivity(),ActivityLauncher {
         else curTour= Tournament()
         val viewManager = LinearLayoutManager(this)
         val viewAdapter = MatchesAdapter(curTour.matches, this, this)
-        tournamenSetMatches.setLayoutManager(viewManager)
-        tournamenSetMatches.setAdapter(viewAdapter)
+        tournamenSetMatches.layoutManager = viewManager
+        tournamenSetMatches.adapter = viewAdapter
         buttonSaveTournament.setOnClickListener {
             var newTournament=Tournament()
             newTournament.name=textViewTourName.text.toString()

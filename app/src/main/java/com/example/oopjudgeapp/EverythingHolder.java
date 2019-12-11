@@ -51,40 +51,86 @@ public class EverythingHolder {
 
     public static void addTeam(Team team)
     {
+        if (allTeams.contains(team))
+        {
+            allTeams.set(team.getId(),team);
+        }
+        else {
         team.setId(teamId);
         teamId++;
         allTeams.add(team);
+        }
     }
 
-    public static void addTournament(Tournament tournament)
-    {
+    public static void addTournament(Tournament tournament) {
+        if (allTournaments.contains(tournament))
+        {
+            allTournaments.set(tournament.getId(),tournament);
+        }
+        else {
         tournament.setId(tournamentId);
         tournamentId++;
         allTournaments.add(tournament);
     }
+    }
 
     public static void addMatch(Match match)
+    {if (allMatches.contains(match))
     {
+        allMatches.set(match.getId(),match);
+    }
+    else {
         match.setId(matchId);
         matchId++;
         allMatches.add(match);
     }
+    }
 
     public static void addPlayer(Player player){
-        player.setId(playerId);
-        playerId++;
-        allPlayers.add(player);
+        if (allPlayers.contains(player))
+        {
+            allPlayers.set(player.getId(),player);
+        }
+        else {
+            player.setId(playerId);
+            playerId++;
+            allPlayers.add(player);
+        }
     }
 
     public static void addJudge(Judge judge){
-        judge.setId(judgeId);
-        judgeId++;
-        allJudges.add(judge);
+        if (allJudges.contains(judge))
+        {
+            allJudges.set(judge.getId(),judge);
+        }
+        else {
+            judge.setId(judgeId);
+            judgeId++;
+            allJudges.add(judge);
+        }
     }
 
     public static void addTrainer(Trainer trainer){
-        trainer.setId(trainerId);
-        trainerId++;
-        allTrainers.add(trainer);
+        if (allTrainers.contains(trainer))
+        {
+            allTrainers.set(trainer.getId(),trainer);
+        }
+        else {
+            trainer.setId(trainerId);
+            trainerId++;
+            allTrainers.add(trainer);
+        }
+    }
+
+    public static List<String> getTrainersAsString()
+    {
+        List<String> returning=Collections.EMPTY_LIST;
+        int i=0;
+        while (i<trainerId)
+        {
+            returning.add(i,allTrainers.get(i).getName());
+            i++;
+        }
+        return returning;
     }
 }

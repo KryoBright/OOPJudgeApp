@@ -24,16 +24,20 @@ public class MatchRedact extends AppCompatActivity implements ActivityLauncher {
             ((EditText)findViewById(R.id.editTextTeam2Score)).setText(EverythingHolder.getAllMatches().get(id).getRightScore().toString());
         }
 
-        LinearLayoutManager viewManager =new LinearLayoutManager(this);
-        TeamListAdapter viewAdapter = new TeamListAdapter(EverythingHolder.getAllTeams(),this,this);
-        RecyclerView recyclerView = findViewById(R.id.TournamentList);
-        recyclerView.setLayoutManager(viewManager);
-        recyclerView.setAdapter(viewAdapter);
+        LinearLayoutManager viewManager1 =new LinearLayoutManager(this);
+        TeamListAdapter viewAdapter1 = new TeamListAdapter(EverythingHolder.getAllTeams(),this,this);
+        RecyclerView recyclerView1= findViewById(R.id.recyclerTeam1);
+        recyclerView1.setLayoutManager(viewManager1);
+        recyclerView1.setAdapter(viewAdapter1);
+        LinearLayoutManager viewManager2 =new LinearLayoutManager(this);
+        TeamListAdapter viewAdapter2 = new TeamListAdapter(EverythingHolder.getAllTeams(),this,this);
+        RecyclerView recyclerView2= findViewById(R.id.recyclerTeam2);
+        recyclerView2.setLayoutManager(viewManager2);
+        recyclerView2.setAdapter(viewAdapter2);
     }
 
     @Override
     public void startnext(Intent intent) {
         startActivity(intent);
-        finish();
     }
 }

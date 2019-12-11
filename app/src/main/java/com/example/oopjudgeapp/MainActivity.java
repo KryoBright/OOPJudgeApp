@@ -27,6 +27,5 @@ public class MainActivity extends AppCompatActivity implements ActivityLauncher 
     @Override
     public void startnext(Intent intent) {
         startActivity(intent);
-        finish();
     }
 }

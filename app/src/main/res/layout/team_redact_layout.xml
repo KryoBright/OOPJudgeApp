@@ -14,20 +14,21 @@
         android:textSize="24sp" />
 
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/spinnerTeamTrainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20dp" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="576dp">
-
-    </androidx.recyclerview.widget.RecyclerView>
 
     <Button
         android:id="@+id/button6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Button" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerTeamPlayers"
+        android:layout_width="match_parent"
+        android:layout_height="576dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>

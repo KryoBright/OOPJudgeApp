@@ -34,4 +34,7 @@ public abstract class Person extends IDable {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 }
