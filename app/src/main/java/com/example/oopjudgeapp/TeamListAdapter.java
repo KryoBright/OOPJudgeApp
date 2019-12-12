@@ -2,6 +2,7 @@ package com.example.oopjudgeapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ public class TeamListAdapter extends RecyclerView.Adapter<TeamListAdapter.ViewHo
     private static Context context=null;
     private static ActivityLauncher launcher=null;
     private List<Team> mDataSet;
+    private Integer chosenID;
 
     // BEGIN_INCLUDE(recyclerViewSampleViewHolder)
 
@@ -78,10 +80,11 @@ public class TeamListAdapter extends RecyclerView.Adapter<TeamListAdapter.ViewHo
      *
      * @param dataSet String[] containing the data to populate views to be used by RecyclerView.
      */
-    public TeamListAdapter(List<Team> dataSet,Context con,ActivityLauncher launcher1) {
+    public TeamListAdapter(List<Team> dataSet,Integer chID,Context con,ActivityLauncher launcher1) {
         mDataSet = dataSet;
         context=con;
         launcher=launcher1;
+        chosenID=chID;
     }
 
     @Override
@@ -128,6 +131,9 @@ public class TeamListAdapter extends RecyclerView.Adapter<TeamListAdapter.ViewHo
         }
         else
         {
+            if ((position-1)==chosenID)
+                ((ViewHolderContainer) viewHolder).tourAll.setBackgroundColor(Color.RED);
+            else ((ViewHolderContainer) viewHolder).tourAll.setBackgroundColor(Color.WHITE);
             ((ViewHolderContainer) viewHolder).teamName.setText(mDataSet.get(position-1).getName());
             ((ViewHolderContainer) viewHolder).teamWins.setText(mDataSet.get(position-1).getWins().toString());
             ((ViewHolderContainer) viewHolder).teamLoses.setText(mDataSet.get(position-1).getLoses().toString());
@@ -142,7 +148,25 @@ public class TeamListAdapter extends RecyclerView.Adapter<TeamListAdapter.ViewHo
                     return false;
                 }
             });
+
+            final ViewHolderContainer holder=((ViewHolderContainer) viewHolder);
+
+            ((ViewHolderContainer) viewHolder).tourAll.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Integer oldID=chosenID;
+                    chosenID=position-1;
+                    notifyItemChanged(oldID);
+                    if ((position-1)==chosenID)
+                        holder.tourAll.setBackgroundColor(Color.RED);
+                    else holder.tourAll.setBackgroundColor(Color.WHITE);
+                }
+            });
         }
+    }
+
+    public Integer getChosenID(){
+        return chosenID;
     }
     // END_INCLUDE(recyclerViewOnBindViewHolder)
 

@@ -37,8 +37,8 @@ public class TeamRedactActivity extends AppCompatActivity implements ActivityLau
             thisTeam=EverythingHolder.getAllTeams().get(id);
         else thisTeam=new Team();
         final Spinner spinner = findViewById(R.id.spinnerTeamTrainer);
-        List<Trainer> data=Collections.EMPTY_LIST;
-        Collections.copy(data,EverythingHolder.getAllTrainers());
+       // List<Trainer> data=new ArrayList<>(EverythingHolder.getAllTrainers().size());
+       // Collections.copy(data,EverythingHolder.getAllTrainers());
 
         included=new ArrayList<>(EverythingHolder.getAllPlayers().size());
 
@@ -51,7 +51,7 @@ public class TeamRedactActivity extends AppCompatActivity implements ActivityLau
             i++;
         }
 
-        ArrayAdapter<?> adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,EverythingHolder.getTrainersAsString());
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,EverythingHolder.getTrainersAsString());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinner.setAdapter(adapter);

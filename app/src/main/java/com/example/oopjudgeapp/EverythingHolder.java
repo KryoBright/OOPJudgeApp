@@ -63,7 +63,7 @@ public class EverythingHolder {
     }
 
     public static void addTournament(Tournament tournament) {
-        if (allTournaments.contains(tournament))
+        if ((tournamentId>tournament.getId())&&(tournament.getId()!=-1))
         {
             allTournaments.set(tournament.getId(),tournament);
         }
@@ -74,20 +74,22 @@ public class EverythingHolder {
     }
     }
 
-    public static void addMatch(Match match)
-    {if (allMatches.contains(match))
+    public static boolean addMatch(Match match)
+    {if (((matchId>match.getId())&&(match.getId()!=-1)))
     {
         allMatches.set(match.getId(),match);
+        return false;
     }
     else {
         match.setId(matchId);
         matchId++;
         allMatches.add(match);
+        return true;
     }
     }
 
     public static void addPlayer(Player player){
-        if (allPlayers.contains(player))
+        if (((playerId>player.getId())&&(player.getId()!=-1)))
         {
             allPlayers.set(player.getId(),player);
         }
@@ -111,7 +113,7 @@ public class EverythingHolder {
     }
 
     public static void addTrainer(Trainer trainer){
-        if (allTrainers.contains(trainer))
+        if (((trainerId>trainer.getId())&&(trainer.getId()!=-1)))
         {
             allTrainers.set(trainer.getId(),trainer);
         }
@@ -124,7 +126,7 @@ public class EverythingHolder {
 
     public static List<String> getTrainersAsString()
     {
-        List<String> returning=Collections.EMPTY_LIST;
+        List<String> returning=new ArrayList<>(trainerId);
         int i=0;
         while (i<trainerId)
         {

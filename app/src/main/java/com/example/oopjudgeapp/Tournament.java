@@ -45,7 +45,8 @@ public class Tournament extends IDable {
         return Collections.unmodifiableList(matches);
     }
 
-    public void addMatch(Match match){
+    public void addMatch(Match match,boolean need){
+        if (need)
         matches.add(match);
     }
 
@@ -72,11 +73,16 @@ public class Tournament extends IDable {
         List<Team> teams=getAllTeams();
         List<Integer> scores=new ArrayList<>(teams.size());
         int i=0;
+        while (i<teams.size()) {
+            scores.add(0);
+            i++;
+        }
+        i=0;
         while (i<matches.size())
         {
             if (!(matches.get(i).getWinner() == null))
-                scores.set(teams.indexOf(matches.get(i).getWinner()),
-                        scores.get(teams.indexOf(matches.get(i).getWinner())) + 1);
+                scores.set(teams.indexOf(matches.get(i).getWinner())%scores.size(),
+                        scores.get(teams.indexOf(matches.get(i).getWinner())%scores.size()) + 1);
             i++;
         }
         boolean sorted=false;
@@ -114,13 +120,14 @@ public class Tournament extends IDable {
         boolean status=true;
         Integer i=0;
         while (i<matches.size()){
+            matches.get(i).updateRes();
             if (matches.get(i).getMatchDate().after(now))
             {
                 status=false;
             }
             i++;
         }
-        if (status)
+        if ((status)&&(i>0))
         {
             finished=true;
         }

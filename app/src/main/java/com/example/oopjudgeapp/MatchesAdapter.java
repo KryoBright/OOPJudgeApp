@@ -17,6 +17,7 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.ViewHold
     private static Context context=null;
     private static ActivityLauncher launcher=null;
     private List<Match> mDataSet;
+    private Integer fatherID;
 
     // BEGIN_INCLUDE(recyclerViewSampleViewHolder)
 
@@ -78,10 +79,11 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.ViewHold
      *
      * @param dataSet String[] containing the data to populate views to be used by RecyclerView.
      */
-    public MatchesAdapter(List<Match> dataSet,Context con,ActivityLauncher launcher1) {
+    public MatchesAdapter(List<Match> dataSet,Integer fID,Context con,ActivityLauncher launcher1) {
         mDataSet = dataSet;
         context=con;
         launcher=launcher1;
+        fatherID=fID;
     }
 
     @Override
@@ -122,6 +124,7 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.ViewHold
                     int i = 0;
                     Intent intent=new Intent(context,MatchRedact.class);
                     intent.putExtra("id",-1);
+                    intent.putExtra("father",fatherID);
                     launcher.startnext(intent);
                 }
             });
@@ -138,6 +141,7 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.ViewHold
 
                     Intent intent=new Intent(context,MatchRedact.class);
                     intent.putExtra("id",mDataSet.get(position-1).getId());
+                    intent.putExtra("father",fatherID);
                     launcher.startnext(intent);
                     return false;
                 }

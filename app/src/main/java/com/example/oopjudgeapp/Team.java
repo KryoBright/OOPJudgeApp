@@ -57,10 +57,30 @@ public class Team extends IDable{
     }
 
     public void setLoses(Integer loses) {
+        int i=0;
+        while (i<EverythingHolder.getAllPlayers().size())
+        {
+            if (teamPlrs.contains(EverythingHolder.getAllPlayers().get(i)))
+            {
+                Player plrTmp=EverythingHolder.getAllPlayers().get(i);
+               plrTmp.setWinsLoses(plrTmp.getWins(),plrTmp.getLoses()+1);
+            }
+            i++;
+        }
         this.loses = loses;
     }
 
     public void setWins(Integer wins) {
+        int i=0;
+        while (i<EverythingHolder.getAllPlayers().size())
+        {
+            if (teamPlrs.contains(EverythingHolder.getAllPlayers().get(i)))
+            {
+                Player plrTmp=EverythingHolder.getAllPlayers().get(i);
+                plrTmp.setWinsLoses(plrTmp.getWins()+1,plrTmp.getLoses());
+            }
+            i++;
+        }
         this.wins = wins;
     }
 }

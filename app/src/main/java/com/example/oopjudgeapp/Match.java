@@ -10,6 +10,7 @@ public class Match extends IDable{
     private Team team1,team2;
     private Integer leftScore,rightScore;
     private Date matchDate;
+    private boolean updated=false;
 
     public Match(){
         //EverythingHolder.addMatch(this);
@@ -49,10 +50,12 @@ public class Match extends IDable{
 
     public void setLeftScore(Integer leftScore) {
         this.leftScore = leftScore;
+        updated=false;
     }
 
     public void setRightScore(Integer rightScore) {
         this.rightScore = rightScore;
+        updated=false;
     }
 
     public Date getMatchDate() {
@@ -79,6 +82,20 @@ public class Match extends IDable{
     public String getStringedScore()
     {
         return getLeftScore().toString()+":"+getRightScore().toString();
+    }
+
+    public void updateRes(){
+        if (!updated)
+        if (leftScore>rightScore)
+        {
+            team1.setWins(team1.getWins()+1);
+            team2.setLoses(team2.getLoses()+1);
+        }
+        else{
+            team2.setWins(team1.getWins()+1);
+            team1.setLoses(team1.getLoses()+1);
+        }
+        updated=true;
     }
 
 
